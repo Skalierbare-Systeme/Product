@@ -1,6 +1,6 @@
 ﻿namespace postsPraktikum.Models
 {
-    public class UploadPostDto
+    public class PostDto
     {
         public required string PostTitle { get; set; }
         public string? PostDescription { get; set; }

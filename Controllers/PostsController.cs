@@ -35,7 +35,7 @@ namespace postsPraktikum.Controllers
         }
 
         [HttpPost]
-        public IActionResult UploadPost(UploadPostDto uploadPostDto)
+        public IActionResult UploadPost(PostDto uploadPostDto)
         {
             var postEntity = new Post() 
             {
@@ -54,7 +54,7 @@ namespace postsPraktikum.Controllers
 
         [HttpPut]
         [Route("{id:guid}")]
-        public IActionResult UpdatePost(Guid id, UpdatePostDto updatePostDto)
+        public IActionResult UpdatePost(Guid id, PostDto updatePostDto)
         {
             var post = dbContext.Posts.Find(id);
             if (post == null) return NotFound();
