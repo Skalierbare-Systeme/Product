@@ -22,7 +22,21 @@ namespace postsPraktikum.Controllers
         {
             return Ok(dbContext.Posts.ToList());
         }
-
+        // --- NEW: Endpoint to get posts for a specific user ---
+        [HttpGet("user/{userId:guid}")]
+        public IActionResult GetPostsByUser(Guid userId)
+        {
+            // Filter posts using a Where clause to find posts matching the userId
+            var posts = dbContext.Posts.Where(p => p.UserId == userId).ToList();
+            
+            if (posts == null)
+            {
+                // Return an empty list instead of NotFound if the user simply has no posts
+                return Ok(new List<Post>());
+            }
+            
+            return Ok(posts);
+        }
         [HttpGet]
         [Route("{id:guid}")]
         public IActionResult GetPostById(Guid id)
@@ -43,7 +57,8 @@ namespace postsPraktikum.Controllers
                 PostDescription = uploadPostDto.PostDescription,
                 PostText = uploadPostDto.PostText,
                 PostCreationDate = uploadPostDto.PostCreationDate,
-                Photos = uploadPostDto.Photos
+                Photos = uploadPostDto.Photos,
+                UserId = uploadPostDto.UserId
             };
 
             dbContext.Posts.Add(postEntity);
