@@ -58,7 +58,8 @@ namespace postsPraktikum.Controllers
                 PostText = uploadPostDto.PostText,
                 PostCreationDate = uploadPostDto.PostCreationDate,
                 Photos = uploadPostDto.Photos,
-                UserId = uploadPostDto.UserId
+                UserId = uploadPostDto.UserId,
+                IsPrivate = uploadPostDto.IsPrivate
             };
 
             dbContext.Posts.Add(postEntity);
@@ -79,6 +80,7 @@ namespace postsPraktikum.Controllers
             post.PostText = updatePostDto.PostText;
             post.PostCreationDate = updatePostDto.PostCreationDate;
             post.Photos = updatePostDto.Photos;
+            post.IsPrivate = updatePostDto.IsPrivate;
             dbContext.SaveChanges();
 
             return Ok(post);
