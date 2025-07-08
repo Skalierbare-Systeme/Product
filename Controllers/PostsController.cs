@@ -17,6 +17,14 @@ namespace postsPraktikum.Controllers
             this.dbContext = dbContext;
         }
 
+        // --- NEW: Endpoint to get all public posts ---
+        [HttpGet("public")]
+        public IActionResult GetPublicPosts()
+        {
+            // Filter posts using a Where clause to find posts where IsPrivate is false
+            var posts = dbContext.Posts.Where(p => !p.IsPrivate).ToList();
+            return Ok(posts);
+        }
         [HttpGet]
         public IActionResult GetPosts()
         {
