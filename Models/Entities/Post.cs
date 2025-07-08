@@ -8,7 +8,8 @@
         public required string PostText { get; set; }
         public required DateTime PostCreationDate { get; set; }
         public required string[] Photos { get; set; }
+        public Boolean IsPrivate { get; set; }
+        public Guid UserId { get; set; }
         
-        public Guid UserId { get; set; } 
     }
 }
